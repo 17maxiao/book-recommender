@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">        
+    </head>
+
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Log In!  
+                        </h1>
+                        <br>
+                    </div>
+                    <div class="container">
+                        <h2 class="subtitle">Sign Up</h2>
+                        <form class="field" method="POST" action="/signup">
+                            {% csrf_token %}
+                            <input name="username" placeholder="username" />
+                            <input name="email" placeholder="email" />
+                            <input name="password" placeholder="password" type="password" />
+                            <input class="input button" value="Create Account" type="submit" />
+                        </form>
+                    </div>
+                    <div class="container">
+                        <h2 class="subtitle">Sign In</h2>
+                        <form class="field" method="POST" action="/signin">
+                            {% csrf_token %}
+                            <input name="username" placeholder="username" />
+                            <input name="password" placeholder="password" type="password" />
+                            <input class="input button" value="Enter" type="submit" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body> 
+</html>
