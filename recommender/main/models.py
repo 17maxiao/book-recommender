@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Books(models.Model): ## this is for book reviews for a particular user 
+class ShelfEntry(models.Model): ## this is for book reviews for a particular user 
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     review = models.TextField()
