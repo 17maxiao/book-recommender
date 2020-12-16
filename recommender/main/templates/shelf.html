@@ -1,0 +1,18 @@
+<h1>My Doggo Blog Posts</h1>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
+
+<form method="POST" action="/home">
+    {% csrf_token %}
+    <p>Create New Blog Post!</p>
+    <input name="title" placeholder="title goes here..."/>
+    <input name="topic" placeholder="post topic..."/>"
+    <input name="body" placeholder="body goes here..."/>
+    <input type="submit" value="Create Note" />
+</form>
+<hr />
+<h2>Current Blog Posts</h2>
+{% for entry in entries %}
+    <a href = "post/{{post.id}}">{{entry.title}} created at {{entry.created_at}}</a>
+    <hr />
+{% endfor %}
