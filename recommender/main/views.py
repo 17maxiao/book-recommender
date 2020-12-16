@@ -42,6 +42,7 @@ def shelf(request):
             body = markdown2.markdown(request.POST["body"]),
             topic = request.POST["topic"]
         )
-    entry.save()
+        entry.save()
+        
     entries = ShelfEntry.objects.all()
     return render(request, 'shelf.html', {'entries': entries})

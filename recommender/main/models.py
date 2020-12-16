@@ -13,5 +13,5 @@ class ShelfEntry(models.Model): ## this is for book reviews for a particular use
     genre = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.title
+        return self
 
