@@ -57,7 +57,12 @@ def signup(request):
 
 
 def shelf(request): 
-    entries = ShelfEntry.objects.all()
+
+    if not request.user.is_authenticated:
+        return redirect('/login_view')
+
+
+    entries = ShelfEntry.objects.filter(author=request.user)
     # matchedbooks = []
     # if request.method == "POST":
     #     title = request.POST["title"]
@@ -92,12 +97,13 @@ def results(request):
 def addtoshelf(request, title):
     
     if request.method == "POST":
-        entry = ShelfEntry(
+        entry = ShelfEntry.objects.create(
             title = title,
             review = request.POST["review"],
-            rating = request.POST["rating"]
+            rating = request.POST["rating"],
+            author = request.user
         )
-        entry.save()
+        #entry.save()
         return redirect('/shelf')
     #print(entry.title)
     return render(request,'addtoshelf.html', {'title': title})
