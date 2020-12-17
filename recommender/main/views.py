@@ -2,14 +2,29 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.models import User
 from main.models import ShelfEntry
+from main.models import FavoriteGenres
 import markdown2
 from markdown2 import Markdown
 import csv
 from pathlib import Path
 from main.helpers import getresults
+import matplotlib.pyplot as plt
+
+import time
+import numpy as np
+import pandas as pd
+import random
+import operator
+from operator import itemgetter
+from statistics import mean 
+
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.cluster import KMeans
+from django_postgres_extensions.models.functions import *
 
 
-
+df_books = pd.read_csv('/Users/may/Documents/GitHub/imdb-movie-recommender/recommender/main/df_books.csv' )
+df_tags = pd.read_csv('/Users/may/Documents/GitHub/imdb-movie-recommender/recommender/main/df_tags.csv' )
 
 
 # Create your views here.
@@ -86,6 +101,45 @@ def addtoshelf(request, title):
         return redirect('/shelf')
     #print(entry.title)
     return render(request,'addtoshelf.html', {'title': title})
+
+def get_book_titles(booklist):
+
+    # Input: booklist: a list with book_ids
+    # Output: titles_dict: dictionary with key: book_id, value: book title and author
+
+    
+    df_mask=df_books[df_books['book_id'].isin(booklist)]\
+        [['book_id','title','authors']]
+    titles_dict = dict(zip(df_mask['book_id'],\
+        df_mask['title'].str.cat(df_mask[['authors']], sep=' - by: ')))
+    
+    return titles_dict
+
+
+def genrerec(request):
+    final_recommendations = dict()
+    genreList = list()
+    if request.method == "POST":  
+        print("LSDFJFLKSDJFLKDSFJDS")
+        genreObj = FavoriteGenres(
+            genres = request.POST["choice"],
+        )
+        genreObj.save()
+        #books corresponding to user tag preferences.
+        favesList = FavoriteGenres.objects.all()
+        for fave in favesList:
+            genreList.append(fave.genres)
+
+        df_book_filter=df_tags[df_tags['tag_id'].isin(genreList)]
+        print("help")
+        print(df_book_filter)
+        
+        final_recommendations=get_book_titles(list(df_book_filter['book_id']))
+        print(final_recommendations)
+        final_recommendations = final_recommendations.values()
+    return  render(request,'genrerec.html', {'recs': final_recommendations, 'genres': genreList})
+
+
 
 
 def entry(request, id):

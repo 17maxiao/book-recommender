@@ -1,0 +1,61 @@
+<h1>Find Recommendations by Genre</h1>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Choose Ur Fave Genres</p>
+    <select id="choice" name="choice">
+        <option value="1">Action</option>
+        <option value="2">Adult</option>
+        <option value="3">Adventure</option>
+        <option value="4">All Time Favorites</option>
+        <option value="5">American</option>
+        <option value="6">Biography</option>
+        <option value="7">Bookclub</option>
+        <option value="8">British</option>
+        <option value="9">Children</option>
+        <option value="10">Classics</option>
+        <option value="11">Comedy</option>
+        <option value="12">Coming of Age</option>
+        <option value="13">Contemporary</option>
+        <option value="14">Crime</option>
+        <option value="15">Drama</option>
+        <option value="16">English</option>
+        <option value="17">Family</option>
+        <option value="18">Fantasy</option>
+        <option value="19">Friendship</option>
+        <option value="20">Historical</option>
+        <option value="21">History</option>
+        <option value="22">Horror</option>
+        <option value="23">Kids</option>
+        <option value="24">Literature</option>
+        <option value="25">Love</option>
+        <option value="26">Magic</option>
+        <option value="27">Mystery</option>
+        <option value="28">Non-fiction</option>
+        <option value="29">Paranormal</option>
+        <option value="30">Philosophy</option>
+        <option value="31">Relationships</option>
+        <option value="32">Romance</option>
+        <option value="33">School</option>
+        <option value="34">Sci-fi</option>
+        <option value="35">Suspense</option>
+        <option value="36">Teen</option>
+        <option value="37">War</option>
+        <option value="38">Women</option>
+        <option value="39">SURPRISE ME!</option>
+    </select>
+    <input type="submit" value="Add Genre" />
+</form>
+<h2>Selected Genres:</h2>
+{% for genre in genres %}
+    <a href = "">{{genre}}</a>
+    <hr />
+{% endfor %}
+<hr />
+<h2>Recommended Books</h2>
+{% for rec in recs %}
+    <a href = "">{{rec}}</a>
+    <hr />
+{% endfor %}

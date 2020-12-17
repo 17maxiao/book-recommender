@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User 
+from django.contrib.postgres.fields import ArrayField
 
 
 # Create your models here.
@@ -14,5 +15,13 @@ class ShelfEntry(models.Model): ## this is for book reviews for a particular use
 
     def __str__(self):
         return self.title, self.rating
+
+
+
+class FavoriteGenres(models.Model): ## this is for book reviews for a particular user 
+    genres = models.IntegerField()
+
+    def __str__(self):
+        return str(self.genres)
 
 
