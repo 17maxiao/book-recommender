@@ -1,0 +1,23 @@
+<h1>Find Recommendations based on Your Books!</h1>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Choose Which Books to Factor In</p>
+    <select id="choice" name="choice">
+        {% for entry in entries %}
+        <option id="entry/{{entry.id}}">{{entry.title}}</option>
+        <hr />
+        {% endfor %}
+    </select>
+    <input type="submit" value="Add Genre" />
+</form>
+<hr />
+<h2>Recommended Books</h2>
+{% for rec in recs %}
+    <div className="row">
+    <a href = "">{{rec}}</a>
+    <hr />
+    </div>
+{% endfor %}

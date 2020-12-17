@@ -136,13 +136,15 @@ def genrerec(request):
         print("LSDFJFLKSDJFLKDSFJDS")
         genreObj = FavoriteGenres(
             genres = request.POST["choice"],
+            author = request.user
         )
         genreObj.save()
         #books corresponding to user tag preferences.
         favesList = FavoriteGenres.objects.filter(author=request.user)
         for fave in favesList:
             genreList.append(fave.genres)
-
+        print("tryinggggg")
+        print(genreList)
         df_book_filter=df_tags[df_tags['tag_id'].isin(genreList)]
         print("help")
         print(df_book_filter)
@@ -150,8 +152,25 @@ def genrerec(request):
         final_recommendations=get_book_titles(list(df_book_filter['book_id']))
         print(final_recommendations)
         final_recommendations = final_recommendations.values()
-    return  render(request,'genrerec.html', {'recs': final_recommendations, 'genres': genreList})
+    return  render(request,'genrerec.html', {'recs': final_recommendations, 'books': books})
 
+
+def shelfrec(request):
+    if not request.user.is_authenticated:
+        return redirect('/login_view')
+
+    final_recommendations = dict()
+    entries = ShelfEntry.objects.filter(author=request.user)
+
+    if request.method == "POST":  
+        print("tryinggggg")
+        # df_book_filter=df_tags[df_tags['tag_id'].isin(genreList)]
+        print("help")
+        # print(df_book_filter)
+        # final_recommendations=get_book_titles(list(df_book_filter['book_id']))
+        # print(final_recommendations)
+        # final_recommendations = final_recommendations.values()
+    return  render(request,'shelfrec.html', {'entry': entries})
 
 
 

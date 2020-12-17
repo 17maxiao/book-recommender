@@ -1,5 +1,4 @@
 <h1>My Shelf</h1>
-<h2><a href="/genrerec">Suggest some books for me!</a></h2>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
 
@@ -21,7 +20,15 @@
     <input type="submit" value="Search" />
 </form>
 <hr />
+<h2>Suggest some books for me!</h2>
+<h4><a href="/genrerec">Recommend by My Favorite Genres</a></h4>
+<h4><a href="/shelfrec">Recommend by My Books on Shelf</a></h4>
+<hr />
 <h2>Current Book Reviews</h2>
+
 {% for entry in entries %}
-<a href = "entry/{{entry.id}}">{{entry.title}} created at {{entry.created_at}}</a>
+<div className="row">
+    <a href = "entry/{{entry.id}}">{{entry.title}} created at {{entry.created_at}}</a>
+    <hr />
+</div>
 {% endfor %}
