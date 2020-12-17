@@ -22,9 +22,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import KMeans
 from django_postgres_extensions.models.functions import *
 
+base_path = Path(__file__).parent
+filepath = (base_path / "./df_books.csv").resolve()
+df_books = pd.read_csv(filepath)
 
-df_books = pd.read_csv('/Users/may/Documents/GitHub/imdb-movie-recommender/recommender/main/df_books.csv' )
-df_tags = pd.read_csv('/Users/may/Documents/GitHub/imdb-movie-recommender/recommender/main/df_tags.csv' )
+base_path_two = Path(__file__).parent
+filepath_two = (base_path_two / "./df_tags.csv")
+df_tags = pd.read_csv(filepath_two)
+
+# df_books = pd.read_csv('/Users/may/Documents/GitHub/imdb-movie-recommender/recommender/main/df_books.csv' )
+# df_tags = pd.read_csv('/Users/may/Documents/GitHub/imdb-movie-recommender/recommender/main/df_tags.csv' )
 
 
 # Create your views here.
@@ -132,7 +139,7 @@ def genrerec(request):
         )
         genreObj.save()
         #books corresponding to user tag preferences.
-        favesList = FavoriteGenres.objects.all()
+        favesList = FavoriteGenres.objects.filter(author=request.user)
         for fave in favesList:
             genreList.append(fave.genres)
 

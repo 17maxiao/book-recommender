@@ -21,6 +21,7 @@ class ShelfEntry(models.Model): ## this is for book reviews for a particular use
 
 class FavoriteGenres(models.Model): ## this is for book reviews for a particular user 
     genres = models.IntegerField()
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.genres)
