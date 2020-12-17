@@ -2,13 +2,13 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
 
-<form method="POST" action="/home">
+<form method="GET" action="/search">
     {% csrf_token %}
     <p>Add your latest book :) </p>
-    <input name="title" placeholder="title goes here..."/>
-    <input name="genre" placeholder="genre"/>
+    <input name="title" placeholder="Search for books you want to review!"/>
+    <!-- <input name="genre" placeholder="genre"/>
     <input name="author" placeholder="author"/>
-    <input name="body" placeholder="review goes here..."/>
+    <input name="review" placeholder="review goes here..."/>
     <label for="rating">How many stars?</label>
     <select id="rating" name="rating">
         <option value="one">1</option>
@@ -16,12 +16,12 @@
         <option value="three">3</option>
         <option value="four">4</option>
         <option value="five">5</option>
-    </select>
-    <input type="submit" value="Create Book Review" />
+    </select> -->
+    <input type="submit" value="Search" />
 </form>
 <hr />
-<h2>Current Blog Posts</h2>
+<h2>All My Book Reviews</h2>
 {% for entry in entries %}
-    <!-- <a href = "entry/{{entry.id}}">{{entry.title}} created at {{entry.created_at}}</a> -->
+    <a href = "entry/{{entry.id}}">{{entry.title}} created at {{entry.created_at}}</a>
     <hr />
 {% endfor %}

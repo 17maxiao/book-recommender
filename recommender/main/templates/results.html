@@ -1,0 +1,10 @@
+<h1>Search Results</h1>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> 
+
+<hr />
+<h2>Results for {{searched}}</h2>
+{% for book in matchedbooks %}
+    <a href = "addtoshelf/{{book}}">{{book}}</a>
+    <hr />
+{% endfor %}

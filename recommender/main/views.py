@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from main.models import ShelfEntry
 import markdown2
 from markdown2 import Markdown
+import csv
+from pathlib import Path
+from main.helpers import getresults
+
 
 
 
@@ -35,14 +39,55 @@ def signup(request):
     login(request, user)
     return redirect('/shelf')
 
+
+
 def shelf(request): 
+    entries = ShelfEntry.objects.all()
+    # matchedbooks = []
+    # if request.method == "POST":
+    #     title = request.POST["title"]
+    #     reader = csv.reader(open('df_books.csv'))
+    #     for row in reader:
+    #         if title in row[title]:
+    #             matchedbooks.append(row[title])
+    return render(request, 'shelf.html', {'entries': entries})
+
+
+def search(request):
+    if request.method == "GET":
+        searched = request.GET["title"]
+        searched = str(searched)
+        print("hello")
+        print(type(searched))
+        matchedbooks = getresults(searched)
+    return render(request, 'results.html',{'searched': searched, 'matchedbooks': matchedbooks})
+
+def results(request):
+    pass
+    # if request.method == "POST":
+    #     entry = ShelfEntry(
+    #         title = title,
+    #         body = request.POST["body"],
+    #         rating = request.POST["rating"]
+    #     )
+    #     entry.save()
+    
+    # return render(request,'results.html', {'title': title},{'entries': entries})
+
+def addtoshelf(request, title):
+    
     if request.method == "POST":
         entry = ShelfEntry(
-            title = request.POST["title"],
-            body = markdown2.markdown(request.POST["body"]),
-            topic = request.POST["topic"]
+            title = title,
+            review = request.POST["review"],
+            rating = request.POST["rating"]
         )
         entry.save()
-        
-    entries = ShelfEntry.objects.all()
-    return render(request, 'shelf.html', {'entries': entries})
+        return redirect('/shelf')
+    #print(entry.title)
+    return render(request,'addtoshelf.html', {'title': title})
+
+
+def entry(request, id):
+    entry = ShelfEntry.objects.get(id=id)
+    return render(request, "entry.html", {'entry': entry}) 
