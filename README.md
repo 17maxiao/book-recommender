@@ -22,5 +22,5 @@ Structurally, we do the most work within views.py. We decided to put our recomme
 * Happy reading!
 
 
-## Resources:
+## Resources
 * [Link to Kaggle GoodReads](https://www.kaggle.com/jealousleopard/goodreadsbooks)
