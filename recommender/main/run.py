@@ -300,18 +300,6 @@ def weighted_mean(df_ratings, user_ratings, sample_size = 100):
 
 
 def genre_filter(user_genres,user_ratings,book_recommends,number=5):
-    '''
-    INPUT:
-    - user_genres: output from def: query_genre_likes(genres).
-        provides a list with genres of interest to the user.
-    - user_ratings: dictionary containing user's book ratings. 
-        Arranged by book_id (key) and rating (value).
-    - book_recommends:
-    - number: number of book recommendations to provide the user
-    OUTPUT:
-    - final_recommend: book recommendations.
-    '''
-    
     #books corresponding to user tag preferences.
     df_book_filter=df_tags[df_tags['tag_id'].isin(user_genres)]
     

@@ -7,12 +7,19 @@
     <p>Choose Which Books to Factor In</p>
     <select id="choice" name="choice">
         {% for entry in entries %}
-        <option id="entry/{{entry.id}}">{{entry.title}}</option>
+        <option id="{{entry.title}}">{{entry.title}}</option>
         <hr />
         {% endfor %}
     </select>
     <input type="submit" value="Add Genre" />
 </form>
+<h4><a href="/shelf">Go back to My Shelf</a></h4>
+<hr />
+<h2>Selected Books:</h2>
+{% for book in books %}
+    <a href = "">{{book}}</a>
+    <hr />
+{% endfor %}
 <hr />
 <h2>Recommended Books</h2>
 {% for rec in recs %}
