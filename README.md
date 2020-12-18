@@ -15,14 +15,29 @@ We used the a book database from the site GoodReads to create a book recommender
   * python manage.py migrate
   * python manage.py server
 * Access the website on: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+* Make an account 
+* Happy reading!
 
 
 ## Pages
 
 ###### My Shelf
-The homepage which contains all of the books that you have added to your shelf -
+The homepage which contains all of the books that you have added to your shelf - use the search bar to look for the title of the book that you want to add. Then, the webpage will navigate you to the a page to select among a list of results for the title you want to add. Once you choose the title of your choice, enter the following information:
 
-### 
+* your review
+* book rating
+* book genre (your personal categorization!)
+
+Once you submit the book review, it will show up on your shelf!
+
+###### Recommend by My Favorite Genres
+
+Select genres to filter suggested books by! We use pandas to filter the dataframe by the selected genres.
+
+###### Recommend by My Books on Shelf
+
+We will pull recommendations based on a weighted mean function on ratings for books based on the ones on your shelves!
+
 
 ## Resources:
 * [Link to Kaggle GoodReads](https://www.kaggle.com/jealousleopard/goodreadsbooks)
