@@ -48,14 +48,18 @@
     </select>
     <input type="submit" value="Add Genre" />
 </form>
+<hr />
 <h4><a href="/shelf">Go back to My Shelf</a></h4>
-<h2>Selected Genres:</h2>
+<hr />
+<h2>Selected Genres</h2>
 {% for genre in genres %}
     <a href = "">{{genre}}</a>
     <hr />
 {% endfor %}
+<h4><a href="/cleargenres">Clear Genre Selection</a></h4>
 <hr />
 <h2>Recommended Books</h2>
+<hr />
 {% for rec in recs %}
     <a href = "">{{rec}}</a>
     <hr />

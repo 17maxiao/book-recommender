@@ -4,24 +4,23 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    <p>Choose Which Books to Factor In</p>
+    <!-- <p>Choose Which Books to Factor In</p>
     <select id="choice" name="choice">
         {% for entry in entries %}
         <option id="{{entry.title}}">{{entry.title}}</option>
-        <hr />
         {% endfor %}
-    </select>
-    <input type="submit" value="Add Genre" />
-</form>
-<h4><a href="/shelf">Go back to My Shelf</a></h4>
-<hr />
-<h2>Selected Books:</h2>
-{% for book in books %}
-    <a href = "">{{book}}</a>
+    </select> -->
+    <h4><a href="/shelf">Go back to My Shelf</a></h4>
     <hr />
-{% endfor %}
-<hr />
+    <h2>My Bookshelf</h2>
+    {% for entry in entries %}
+        <a href = "">{{entry.title}}</a>
+        <hr />
+    {% endfor %}
+    <!-- <input type="submit" value="Take Book Off Shelf" /> -->
+</form>
 <h2>Recommended Books</h2>
+<hr />
 {% for rec in recs %}
     <div className="row">
     <a href = "">{{rec}}</a>

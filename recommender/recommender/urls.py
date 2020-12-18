@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main.views import home, login_view, signin, signup, shelf, results, search, addtoshelf, entry, genrerec, shelfrec
+from main.views import home, login_view, signin, signup, shelf, results, search, addtoshelf, entry, genrerec, shelfrec, cleargenres
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('shelf', shelf, name='shelf'),
     path('search', search, name='search'),
     path('genrerec', genrerec, name='genrerec'),
+    path('cleargenres', cleargenres, name='cleargenres'),
     path('shelfrec', shelfrec, name='shelfrec'),
     path('addtoshelf/<str:title>', addtoshelf, name='addtoshelf'),
     path('entry/<str:id>', entry, name='entry'),

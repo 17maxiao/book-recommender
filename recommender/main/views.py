@@ -162,6 +162,11 @@ def genrerec(request):
         final_recommendations = final_recommendations.values()
     return  render(request,'genrerec.html', {'recs': final_recommendations, 'genres': genreList})
 
+def cleargenres(request):
+    FavoriteGenres.objects.filter(author=request.user).delete()
+    return redirect('/genrerec')
+
+
 
 def shelfrec(request):
     if not request.user.is_authenticated:
@@ -178,8 +183,8 @@ def shelfrec(request):
         ratings[entry.title] = entry.rating
         genres.append(entry.genre)
 
-    if request.method == "POST":  
-        books.append(request.POST["choice"])
+    # if request.method == "POST":  
+        # books.append(request.POST["choice"])
 
         #get a list of recommended books
         mean=weighted_mean(df_ratings, ratings, sample_size = 100)
@@ -192,14 +197,9 @@ def shelfrec(request):
 
 
         final_recs = getTitles(list(df_book_filter['book_id']))
-        # print("LSKDFJ")
-        # print("LSKDFJ")
-        # print("LSKDFJ")
-        # print("LSKDFJ")
-        # print("LSKDFJ")
-        # print(final_recs)
+        final_recs = final_recs.values()
 
-    return  render(request,'shelfrec.html', {'entries': entries, 'books': books, 'recs': final_recs})
+    return  render(request,'shelfrec.html', {'entries': entries, 'recs': final_recs})
 
 def getTitles(IDlist):
     df_mask=df_books[df_books['book_id'].isin(IDlist)]\
