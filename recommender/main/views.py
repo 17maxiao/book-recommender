@@ -158,9 +158,9 @@ def genrerec(request):
         # print(df_book_filter)
         
         final_recommendations=get_book_titles(list(df_book_filter['book_id']))
-        # print(final_recommendations)
+        print(final_recommendations)
         final_recommendations = final_recommendations.values()
-    return  render(request,'genrerec.html', {'recs': final_recommendations, 'genreList': genreList})
+    return  render(request,'genrerec.html', {'recs': final_recommendations, 'genres': genreList})
 
 
 def shelfrec(request):
