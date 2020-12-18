@@ -136,6 +136,7 @@ def genrerec(request):
         print("LSDFJFLKSDJFLKDSFJDS")
         genreObj = FavoriteGenres(
             genres = request.POST["choice"],
+            author = request.user
         )
         genreObj.save()
         #books corresponding to user tag preferences.
